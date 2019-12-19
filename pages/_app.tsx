@@ -3,11 +3,13 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
+import { AnimatePresence } from 'framer-motion';
 
 import createStore from '../store'
 
 class MyApp extends App<any, any> {
   static async getInitialProps({ Component, ctx }) {
+    console.log('getInitialProps')
     let pageProps = {}
 
     if (Component.getInitialProps) {
@@ -18,10 +20,15 @@ class MyApp extends App<any, any> {
   }
 
   render() {
-    const { Component, pageProps, store } = this.props
+    const { Component, pageProps, store, router } = this.props
+    const { query } = router
+    const { pid } = query
+    console.log('pid', pid)
     return (
       <Provider store={store}>
-        <Component {...pageProps} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={pid} />
+        </AnimatePresence>
       </Provider>
     )
   }

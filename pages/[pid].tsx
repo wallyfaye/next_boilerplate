@@ -6,7 +6,7 @@ export default () => {
     
     return (
         <Main 
-            query={router.query}
+            router={router}
         />
     )
 }
