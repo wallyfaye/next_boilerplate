@@ -1,37 +1,35 @@
-import App from 'next/app'
 import React from 'react'
 import { Provider } from 'react-redux'
+import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion'
 
-import createStore from '../store'
+import { makeStore } from '../store'
 
-class MyApp extends App<any, any> {
-  static async getInitialProps({ Component, ctx }) {
-    console.log('getInitialProps')
-    let pageProps = {}
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({ ctx })
-    }
-
-    return { pageProps }
+class MyApp extends App<any> {
+  public static async getInitialProps({Component, ctx}) {
+      return {
+          pageProps: {
+              ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {}),
+              pathname: ctx.pathname,
+          },
+      };
   }
 
-  render() {
-    const { Component, pageProps, store, router } = this.props
-    const { query } = router
-    const { pid } = query
-    console.log('pid', pid)
-    return (
-      <Provider store={store}>
+  public render() {
+      const {Component, pageProps, store, router} = this.props;
+      const { query } = router
+      const { pid } = query
+
+      return (
         <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={pid} />
+          <Provider store={store}>
+            <Component {...pageProps} key={pid} />
+          </Provider>
         </AnimatePresence>
-      </Provider>
-    )
+      );
   }
 }
 
-export default withRedux(createStore)(withReduxSaga(MyApp))
+export default withRedux(makeStore, {debug: false})(withReduxSaga(MyApp));
