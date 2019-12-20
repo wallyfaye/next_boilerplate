@@ -4,10 +4,19 @@ import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import { AnimatePresence } from 'framer-motion'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { makeStore } from '../store'
 
 class MyApp extends App<any> {
+  persistor: any
+
+  constructor(props) {
+    super(props)
+    this.persistor = persistStore(props.store)
+  }
+
   public static async getInitialProps({Component, ctx}) {
       return {
           pageProps: {
@@ -25,7 +34,13 @@ class MyApp extends App<any> {
       return (
         <AnimatePresence exitBeforeEnter>
           <Provider store={store}>
-            <Component {...pageProps} key={pid} />
+            <PersistGate
+              loading={<Component {...pageProps} key={pid} />}
+              persistor={this.persistor}
+            >
+            >
+              <Component {...pageProps} key={pid} />
+            </PersistGate>
           </Provider>
         </AnimatePresence>
       );

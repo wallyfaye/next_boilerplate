@@ -24,9 +24,9 @@ const Index = ({ dispatch, router, stopwatch }) => {
             <Head 
                 titleText={`Hello World - ${pid}`}
             />
-            <Image src="/cookie.jpg" alt="my image" />
-            <P>start time: {stopwatch.startTime}</P>
-            <P>stop time: {stopwatch.stopTime}</P>
+            <Image style={{ width: '50px' }} src="/cookie.jpg" alt="my image" />
+            <P>start time: {stopwatch.startTimeWorldTime}</P>
+            <P>stop time: {stopwatch.stopTimeWorldTime}</P>
              <Button onClick={() => {
                 dispatch(startStopwatch())
             }}>

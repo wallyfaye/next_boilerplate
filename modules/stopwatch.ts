@@ -24,6 +24,8 @@ export default function reducer(state = initialState, action) {
             isRunning: true,
             startTime: action.startTime,
             startTimeWorldTime: action.startTimeWorldTime,
+            stopTime: initialState.stopTime,
+            stopTimeWorldTime: initialState.stopTimeWorldTime,
         }
         
         case STOP_SUCCESS:
