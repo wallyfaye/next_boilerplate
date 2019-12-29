@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm run tsconfig:dev && next",
     "build": "next build",
+    "deploy": "./node_modules/serverless/bin/serverless.js",
     "start": "next start",
     "test": "npm run tsconfig:test && jest",
     "tsconfig:dev": "cp ./tsconfig.dev.json ./tsconfig.json",
@@ -39,6 +40,8 @@
     "jest": "^24.9.0",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
+    "serverless": "^1.60.4",
+    "serverless-next.js": "^1.7.3",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.4"
   }
