@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "npm run tsconfig:dev && next",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "npm run tsconfig:test && jest",
+    "tsconfig:dev": "cp ./tsconfig.dev.json ./tsconfig.json",
+    "tsconfig:test": "cp ./tsconfig.test.json ./tsconfig.json"
   },
   "author": "",
   "license": "ISC",
