@@ -1,0 +1,5 @@
+export const START = 'stopwatch/START'
+export const START_SUCCESS = 'stopwatch/START_SUCCESS'
+export const STOP = 'stopwatch/STOP'
+export const STOP_SUCCESS = 'stopwatch/STOP_SUCCESS'
+export const ERROR = 'stopwatch/ERROR'

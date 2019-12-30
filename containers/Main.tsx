@@ -10,10 +10,10 @@ import Image from '../components/Image'
 import P from '../components/P'
 import Head from '../components/Head'
 
-import { startStopwatch, stopStopwatch } from '../modules/stopwatch'
+import { startStopwatch, stopStopwatch } from '../modules/stopwatch/actionCreators'
 
 const Animatable = (props) => {
-    return (!props.pid1) ? (<motion.div {...props} />) :(<div {...props} />)
+    return (!props.pid1) ? (<motion.div {...props} />) : (<motion.div {...props} />)
 }
 
 const Index = ({ dispatch, router, stopwatch }) => {

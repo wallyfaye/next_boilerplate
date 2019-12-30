@@ -2,9 +2,12 @@ import { combineReducers } from 'redux'
 import { all, fork } from 'redux-saga/effects'
 
 import stopwatch, { 
-  saga as sagaStopwatch,
   initialState as initialStateStopwatch,
-} from './stopwatch'
+} from './stopwatch/reducers'
+
+import { 
+  saga as sagaStopwatch,
+} from './stopwatch/sagas'
 
 export const exampleInitialState = {
   stopwatch: initialStateStopwatch,
